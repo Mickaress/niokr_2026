@@ -31,6 +31,18 @@
   });
 
   const onSubmit = () => {
+    const data: UserFormType = {
+      full_name: userFormValue.value.full_name,
+      email: userFormValue.value.email,
+      phone: userFormValue.value.phone,
+    };
+
+    if (isCustomer) {
+      data.company_name = userFormValue.value.company_name;
+      data.company_address = userFormValue.value.company_address;
+      data.company_description = userFormValue.value.company_description;
+    }
+
     updateUserInfo(userFormValue.value);
   };
 </script>

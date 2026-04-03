@@ -33,10 +33,6 @@ export default class UserApi implements UserApiType {
   }
 
   async updateUserInfo(userInfo: UserFormType): Promise<void> {
-    const payload = Object.fromEntries(
-      Object.entries(userInfo).filter(([, v]) => typeof v === 'string' && v.trim() !== ''),
-    ) as Partial<UserFormType>;
-
-    await axiosInstance.patch('me', payload);
+    await axiosInstance.patch('me', userInfo);
   }
 }

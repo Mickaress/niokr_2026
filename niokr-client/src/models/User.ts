@@ -26,10 +26,11 @@ export interface EmployeeType extends SharedUserType {
 export interface AdminType extends SharedUserType {}
 
 export interface UserFormType {
-  full_name: string;
-  email: string;
-  phone: string;
+  full_name?: string;
+  email?: string;
+  phone?: string;
   company_name?: string;
   company_address?: string;
   company_description?: string;
+  tags?: number[];
 }
