@@ -1,0 +1,58 @@
+# Запуск из каталога study: docker compose up --build
+# Фронт: http://localhost:8080  ·  API: http://localhost:8000/api/
+# Пароль БД в примере «niokr» — смените для реального деплоя.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: niokr
+      POSTGRES_PASSWORD: niokr
+      POSTGRES_DB: niokr
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U niokr -d niokr"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./niokr-server2
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_SECRET_KEY: docker-dev-secret-not-for-production-min-50-chars-xxxxxxxx
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,backend
+      POSTGRES_DB: niokr
+      POSTGRES_USER: niokr
+      POSTGRES_PASSWORD: niokr
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      CORS_ALLOWED_ORIGINS: http://localhost:8080,http://127.0.0.1:8080,http://localhost:5173,http://127.0.0.1:5173
+      DJANGO_SERVE_MEDIA: "1"
+    volumes:
+      - backend_media:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./niokr-client
+      args:
+        VITE_BASE_URL: /
+        VITE_API_URL: http://localhost:8000/api/
+        VITE_FILE_URL: http://localhost:8000
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  backend_media:

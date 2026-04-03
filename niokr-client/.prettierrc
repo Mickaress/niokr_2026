@@ -1,0 +1,30 @@
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "printWidth": 100,
+  "endOfLine": "auto",
+  "vueIndentScriptAndStyle": true,
+  "importOrder": [
+    "^(.*/pages/.*)$",
+    "^(.*/components/.*)$",
+    "^(.*/api/.*)$",
+    "^(.*/hooks/.*)$",
+    "^(.*/helpers/.*)$",
+    "^(.*/router/.*)$",
+    "^(.*/stores/.*)$",
+    "^(.*/types/.*)$",
+    "^(.*/models/.*)$",
+    "^(.*/constants/.*)$",
+    "^(.*/assets/.*)$",
+    "^(.*/styles/.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}

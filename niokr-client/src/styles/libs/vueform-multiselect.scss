@@ -1,0 +1,98 @@
+@import '../../../node_modules/@vueform/multiselect/themes/default';
+
+.multiselect {
+  --ms-bg: var(--light-color);
+  --ms-border-color: var(--medium-gray-color);
+  --ms-py: 1.0625rem;
+  --ms-px: 1.0625rem;
+  --ms-radius: 0.3125rem;
+  --ms-option-font-size: 1.125rem;
+  --ms-font-size: 1.125rem;
+  --ms-option-bg-selected-pointed: var(--accent-color);
+  --ms-option-color-selected-pointed: var(--light-color);
+  --ms-option-color-selected: var(--light-color);
+  --ms-option-bg-selected: var(--accent-color);
+  --ms-bg-disabled: var(--light-gray-color);
+  --ms-border-color-active: var(--accent-color);
+
+  transition: border 100ms ease;
+
+  &.is-disabled {
+    color: var(--dark-gray-color);
+  }
+}
+
+.multiselect-option.is-selected {
+  span {
+    color: var(--light-color);
+  }
+}
+
+.multiselect-dropdown {
+  scrollbar-color: var(--dark-gray-color) transparent;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 0.375rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.625rem;
+    background-color: var(--dark-gray-color);
+  }
+}
+
+.multiselect.is-active {
+  box-shadow: none;
+}
+
+.multiselect-tag-wrapper {
+  color: var(--light-color);
+}
+
+.multiselect-tag-remove {
+  color: var(--light-color);
+}
+
+.multiselect-tag-remove:hover {
+  background-color: var(--light-color);
+  border-radius: 50%;
+}
+
+.multiselect-tags {
+  padding-right: 0.5em;
+}
+
+.multiselect-tags-search-copy {
+  overflow-wrap: anywhere;
+}
+
+.multiselect-tags-search-wrapper {
+  margin-left: 0;
+}
+
+.multiselect-tag {
+  padding: 0.4375rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  background: var(--accent-color);
+  border-radius: 1.875rem;
+}
+
+.multiselect-single-label {
+  display: block;
+  width: 100%;
+  padding-right: 4.5em;
+  overflow: hidden;
+  line-height: 3.5625rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiselect-search {
+  padding-right: 4.5em;
+}
+
+.multiselect-tags-search {
+  background-color: var(--ms-bg);
+}
