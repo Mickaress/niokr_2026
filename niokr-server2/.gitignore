@@ -1,6 +1,5 @@
 # Секреты и локальные env-файлы; шаблон .env.example в репозитории оставляем
-.env*
-!.env.example
+.env
 
 # Python
 __pycache__/

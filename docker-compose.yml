@@ -1,8 +1,9 @@
 # Запуск из каталога study: docker compose up --build
 # Снаружи один адрес: http://localhost:8080 (фронт, /api/, /media/)
 #
-# Публичный URL без слэша на конце (сборка фронта + CORS):
-#   export PUBLIC_ORIGIN=https://example.com
+# Фронт по умолчанию: VITE_API_URL=/api/, VITE_FILE_URL пустой — запросы идут на тот же хост, что и страница.
+# Доступ по IP: задайте DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,backend,ВАШ_IP
+# и при необходимости CORS_ALLOWED_ORIGINS=http://ВАШ_IP:8080
 #
 # Пароль БД «niokr» — смените в проде. Порты db наружу в проде лучше убрать.
 
@@ -37,7 +38,7 @@ services:
       POSTGRES_PASSWORD: niokr
       POSTGRES_HOST: db
       POSTGRES_PORT: "5432"
-      CORS_ALLOWED_ORIGINS: ${PUBLIC_ORIGIN:-http://localhost:8080}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
       DJANGO_SERVE_MEDIA: "1"
     volumes:
       - backend_media:/app/media
@@ -50,8 +51,8 @@ services:
       context: ./niokr-client
       args:
         VITE_BASE_URL: /
-        VITE_API_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}/api/
-        VITE_FILE_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}
+        VITE_API_URL: ${VITE_API_URL:-/api/}
+        VITE_FILE_URL: ""
     expose:
       - "80"
     depends_on:

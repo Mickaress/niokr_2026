@@ -37,8 +37,9 @@
   function buildServerUrl(filePath: string) {
     if (!filePath) return '';
 
-    const baseFileUrl = import.meta.env.VITE_FILE_URL;
-    return `${baseFileUrl}${filePath}`;
+    const base = (import.meta.env.VITE_FILE_URL as string | undefined) ?? '';
+    const path = filePath.startsWith('/') ? filePath : `/${filePath}`;
+    return base ? `${base.replace(/\/$/, '')}${path}` : path;
   }
 
   function getDisplayName(file: AnyProjectFile) {
