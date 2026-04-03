@@ -43,7 +43,7 @@
       data.company_description = userFormValue.value.company_description;
     }
 
-    updateUserInfo(userFormValue.value);
+    updateUserInfo(data);
   };
 </script>
 
